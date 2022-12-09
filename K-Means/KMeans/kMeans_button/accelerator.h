@@ -2,27 +2,22 @@
 #define ACCELERATOR_H
 
 
-struct Measurement
-{
+struct Measurement {
   int x;
   int y;
   int z;
 };
 
-class Accelerator
-{
+class Accelerator {
 public:
   Accelerator();
   ~Accelerator();
   void Print();
-  void Keskipisteet();
   void makeMeasurement();
   Measurement getMeasurement();
-  int sisaanmeno = 0;
 
 private:
   Measurement m;
- 
 };
 
-#endif // ACCELERATOR_H
+#endif  // ACCELERATOR_H

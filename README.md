@@ -8,3 +8,6 @@ Tietoliikennelabrassa on IoT-reititin (Raspberry Pi), joka on Oamkin kampusverko
 <picture>
  <img alt="Arkkitehtuurikuva" src="https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/arkkitehtuuri2.png">
 </picture>
+
+## 3D-kuva ennen luokittelua
+![image](https://user-images.githubusercontent.com/89783861/203953590-33216a41-b0b3-44a7-b0c8-ffa63a7f8cda.png)"

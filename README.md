@@ -2,17 +2,28 @@
 
 ## Projektin kuvaus
 
-Tietoliikennelabrassa on IoT-reititin (Raspberry Pi), joka on Oamkin kampusverkossa. Opiskelijoiden tehtävänä on koodata Arduinolle client, joka mittaa kiihtyvyysanturin dataa ja välittää tietoa langattomasti IoT-reitittimelle valmiiksi annetun speksin mukaisesti. IoT-reititin on asennettu valmiiksi ja varastoi vastaanotettua dataa MySQL-tietokantaan. Tietokantaan tallentuvaan dataan on TCP-sokettirajapinta ja HTTP API. Kerättyä dataa haetaan rajanpinnasta omaan kannettavaan koodatulla ohjelmalla ja käsitellään koneoppimistarkoitukseen.
+Tietoliikennelabrassa on IoT-reititin (Raspberry Pi), joka toimii Oamkin kampusverkossa. Opiskelijoiden tehtävänä on koodata Arduinolle ohjelma, joka mittaa kiihtyvyysanturin dataa ja välittää tietoa 433 MHz radiorajapinnan yli IoT-reitittimelle valmiiksi annetun kirjaston mukaisesti. IoT-reititin on asennettu valmiiksi ja se varastoi vastaanotettua dataa MySQL-tietokantaan. Tietokantaan tallentuvaan dataan on TCP-sokettirajapinta ja HTTP API. Kerättyä dataa haetaan rajanpinnasta omaan kannettavaan koodatulla ohjelmalla ja käsitellään koneoppimistarkoitukseen.
 
 ## Arkkitehtuurikuva
-![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/arkkitehtuuri.png)"
+![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/arkkitehtuuri.png)
+|:--:|
+<b>Järjestelmän arkkitehtuurikuva; kuvaa sitä, kuinka eri järjestelmät liittyvät toisiinsa.</b>
+
+## Kiihtyvyysanturimittaukset Arduinolla ja lähetys 433 MHz radiolla
+![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/arduino_code.png)
+|:--:|
+<b>Koodi kiihtyvyysanturille, jolla kuusi eri suuntaa mitattiin.</b>
+
+![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/arduino.jpg)
+|:--:|
+<b>Kuvassa Arduino Uno, johon liitetty kiihtyvyysanturi ja kytkentäalusta, jossa radiolähetin ja -vastaanotin.</b>
 
 ## 3D-kuvat luokittelusta ennen ja jälkeen
-![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/6Means_ennen2.png)"
-![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/6Means_jalkeen2.png)"
+![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/6Means_ennen2.png)
+![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/6Means_jalkeen2.png)
 
 ## Tavoitteet
-Tavoitteena oli koodata Arduinolle sovellus, joka mittaa kiihtyvyysanturin dataa ja lähettää sen 433Mhz radiorajapinnan yli IoT-reitittimelle (Rasberry pi)
+Tavoitteena oli koodata Arduinolle sovellus, joka mittaa kiihtyvyysanturin dataa ja lähettää sen  yli IoT-reitittimelle (Rasberry pi)
 tallennettavaksi MySQL tietokantaan. Tämän jälkeen Pythonilla koodattiin ohjelma, joka hakee datan tietokannasta HTTP API:n kautta ja välittää sen K-Means algoritmille. 
 K-Means algoritmi tämän jälkeen luetteloi datan kuuteen eri joukkoon. Näiden pisteiden perusteella Arduinolle tehtiin oma K-Means malli, joka vertaa anturidataa malliin 
 ja kertoo anturin asennon.

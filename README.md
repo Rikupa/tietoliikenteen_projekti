@@ -32,7 +32,7 @@ Mikrokontrollerina oli Arduino Uno, yhdessä kiihtyvyysanturin(GY-61), radioläh
 
 ![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/python_KMeans.png)
 |:--:|
-<b>Kuvassa Arduino Uno, johon liitetty kiihtyvyysanturi sekä kytkentäalusta, jossa radiolähetin ja -vastaanotin.</b>
+<b>K-Meansin algoritmia.</b>
 
 ![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/python_iteration.png)
 |:--:|
@@ -40,24 +40,15 @@ Mikrokontrollerina oli Arduino Uno, yhdessä kiihtyvyysanturin(GY-61), radioläh
 
 ![image](https://github.com/Rikupa/tietoliikenteen_projekti/blob/main/Kuvat/6Means_yhdistetty.png)
 |:--:|
-<b>Kuvassa Arduino Uno, johon liitetty kiihtyvyysanturi sekä kytkentäalusta, jossa radiolähetin ja -vastaanotin.</b>
-
-
-## Tavoitteet
-Tavoitteena oli koodata Arduinolle sovellus, joka mittaa kiihtyvyysanturin dataa ja lähettää sen  yli IoT-reitittimelle (Rasberry pi)
-tallennettavaksi MySQL tietokantaan. 
-
+<b>Tähdet edustavat keskipisteitä ja siniset pisteet datajoukon pisteitä. Vasemmalla on ensiksi arvotut keskipisteet ja oikessa kuvassa keskipisteet iteroinnin jälkeen. </b>
 
 ## Metodit
-Projektissa oli käytössä ohjelmointikielinä Python ja C++  Versionhallinnassa käytössä oli Git ja sen
+Projektissa oli käytössä ohjelmointikielinä Python ja C++. Versionhallinnassa käytössä oli Git ja sen
 jatkeena GitHub edistymisen tarkkailuun ja tehtyjen töiden tallentamiseen.
 
 ## Lopputulos
-Mitatun datan siirto onnistuu radiorajapinnan yli tietokannalle. Tästä
-datasta K-means algoritmilla tehty malli
-implementoitiin Arduinoon, 
-joka osasi onnistuneesti luokitella
-anturidatan perusteella asennot oikein.
+Mitatun datan siirto onnistuu radiorajapinnan yli tietokannalle.
+Tästä datasta K-means -algoritmilla tehty malli implementoitiin Arduinoon, joka osasi onnistuneesti luokitella anturidatan perusteella asennot oikein.
 
 ## Johtopäätökset
 Projekti oli haastava, mutta 

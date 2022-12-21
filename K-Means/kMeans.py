@@ -17,20 +17,18 @@ def dataProcessing(data):
 
     numberOfRows = len(data)
     numberOfRows = int(numberOfRows)
-    
-    datax = data.values[0::,5]
-    datay = data.values[0::,6]
-    dataz = data.values[0::,7]
 
     dataMatrix = np.zeros((numberOfRows,3))
-    dataMatrix[:,0] = datax
-    dataMatrix[:,1] = datay
-    dataMatrix[:,2] = dataz
+    dataMatrix[:,0] = data.values[0::,5]
+    dataMatrix[:,1] = data.values[0::,6]
+    dataMatrix[:,2] = data.values[0::,7]
+
+    position = data.values[0::,9]
 
     randomMax = np.max(data.values[0::,5:7])
     randomMin = np.min(data.values[0::,5:7])
 
-    return dataMatrix,numberOfRows
+    return dataMatrix,numberOfRows, position
 
 def randomData():
 
@@ -38,9 +36,10 @@ def randomData():
 
     return random
 
-def kMeans(dataMatrix,random,numberOfRows):
+def kMeans(dataMatrix,random,numberOfRows,position):
     values = np.zeros(6)
     counts = np.zeros(6)
+    flag = np.zeros(6)
     averageDistance = np.zeros((6,3))
     centerPointCumulativeSum = np.zeros((6,3))
     for i in range(numberOfRows):
@@ -51,15 +50,16 @@ def kMeans(dataMatrix,random,numberOfRows):
         index = np.argmin(values)
         counts[index] += 1
         centerPointCumulativeSum[index,0:3] += dataMatrix[i,0:3]
-        #print("Arvottu tulos:",counts)
+        flag[index] = position[i]
+        print("flag",flag)
         
-    apu1 = np.min(counts)
+    pienin_counts = np.min(counts)
     y = 0
 
-    if apu1 == 0:
+    if pienin_counts == 0:
         random = randomData()
-        kMeans(dataMatrix,random,numberOfRows)
-    elif apu1 != 0:
+        kMeans(dataMatrix,random,numberOfRows,position)
+    elif pienin_counts != 0:
         for y in range(6):
             averageDistance[y] = (centerPointCumulativeSum[y] / counts[y])
 
@@ -68,7 +68,6 @@ def kMeans(dataMatrix,random,numberOfRows):
         
         
         while True:
-            # print("Iteroitu tulos: ", iter)
             iter2 = iter
             iter = iteration(averageDistance,dataMatrix,numberOfRows)
             print("Iteroitu tulos: ", iter)
@@ -76,6 +75,7 @@ def kMeans(dataMatrix,random,numberOfRows):
                 break
 
         plotter(averageDistance,dataMatrix,numberOfRows)
+        exporting(averageDistance,flag)
 
 def iteration(averageDistance,dataMatrix,numberOfRows):
     averageDistance = averageDistance
@@ -98,9 +98,6 @@ def iteration(averageDistance,dataMatrix,numberOfRows):
         averageDistance[y] = (centerPointCumulativeSum[y] / counts[y])
         f= open("keskipisteet.h","w+")
         f.write(str(averageDistance % (i+1)))
-        
-    
-        
 
     return counts
 
@@ -120,10 +117,34 @@ def plotter(averageDistance,dataMatrix,numberOfRows):
     ax.set_zlabel('Z Label')
     
     plt.show()
+    
+
+def exporting(averageDistance,flag):
+
+    print(averageDistance)
+
+    with open('keskipisteet.h', 'w') as f:
+        line = "float w[6][6] = {"
+        for i in range(5):
+            line = line + "{"
+            outputThis = np.array2string(averageDistance[i,:],precision=3,separator=',')
+            line = line + outputThis[1:len(outputThis)-1]
+            line = line + ","+str(int(flag[i]))
+            line = line + "},"
+        outputThis = np.array2string(averageDistance[5,:],precision=3,separator=',')
+        line = line + "{"
+        line = line + outputThis[1:len(outputThis)-1]
+        line = line + ","+str(int(flag[5]))
+        line = line + "}"
+        line = line + "};"
+        f.write(line)
+        f.write('\n')
+
+    f.close()
+
 
 if __name__ == "__main__":
     data = dataReading()
-    dataMatrix, numberOfRows = dataProcessing(data)
+    dataMatrix, numberOfRows, position = dataProcessing(data)
     random = randomData()
-    kMeans(dataMatrix,random,numberOfRows)
-
+    kMeans(dataMatrix,random,numberOfRows,position)

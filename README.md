@@ -48,7 +48,7 @@ jatkeena GitHub edistymisen tarkkailuun ja tehtyjen töiden tallentamiseen.
 
 ## Lopputulos
 Mitatun datan siirto onnistuu radiorajapinnan yli tietokannalle.
-Tästä datasta K-means -algoritmilla tehty malli implementoitiin Arduinoon, joka osasi onnistuneesti luokitella anturidatan perusteella asennot oikein.
+Tästä datasta K-means -algoritmilla tehty malli sovellettiin Arduinoon, joka osasi luokitella anturidatan perusteella kiihtyvyysanturin asennon oikein.
 
 ## Johtopäätökset
 Projekti oli haastava, mutta 

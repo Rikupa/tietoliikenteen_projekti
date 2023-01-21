@@ -2,7 +2,7 @@
 
 ## Projektin kuvaus
 
-1. Opiskelijoiden tehtävänä on koodata Arduinolle ohjelma, joka mittaa kiihtyvyysanturin dataa ja välittää tietoa 433 MHz radiorajapinnan yli IoT-reitittimelle, valmiiksi annetun kirjaston mukaisesti.
+1. Tehtävänä oli koodata Arduinolle ohjelma, joka mittaa kiihtyvyysanturin dataa ja välittää tietoa 433 MHz radiorajapinnan yli IoT-reitittimelle, valmiiksi annetun kirjaston mukaisesti.
 2. IoT-reititin (Raspberry Pi) on asennettu valmiiksi OAMKin tietoliikennelaboratorioon ja se toimii koulun sisäisessä kampusverkossa. Reititin myös varastoi vastaanotettua dataa MySQL-tietokantaan.
 3. Pythonilla koodattiin TCP-socket -ohjelma, joka hakee datan tietokannasta HTTP API:n kautta ja välittää sen K-Means algoritmille CSV-tiedostona.
 4. K-Means algoritmi luetteloi datan kuuteen eri joukkoon. Näiden pisteiden perusteella Arduinolle tehtiin oma K-Means malli, joka vertaa anturidataa malliin ja kertoo anturin asennon.
